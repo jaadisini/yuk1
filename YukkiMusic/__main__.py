@@ -55,7 +55,7 @@ async def init():
                 exit()
         else:
             result = await app.run_shell_command(
-                ["git", "clone", config.EXTRA_PLUGINS_REPO, "xtraplugins"]
+                ["git", "clone", "https://github.com/jaadisini/Extra-Plugin", "xtraplugins"]
             )
             if result["returncode"] != 0:
                 logger.error(f"Error cloning extra plugins: {result['stderr']}")
