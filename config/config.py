@@ -51,7 +51,7 @@ EXTRA_PLUGINS = is_true(getenv("EXTRA_PLUGINS", "True"))
 
 EXTRA_PLUGINS_REPO = getenv(
     "EXTRA_PLUGINS_REPO",
-    "https://github.com/AnonymousX888/ExtraPlugin",
+    "https://github.com/jaadisini/Extra-Plugin",
 )
 # Fill here the external plugins repo where plugins that you want to load
 
