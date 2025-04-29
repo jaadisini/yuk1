@@ -8,7 +8,7 @@
 # All rights reserved.
 #
 
-from py_yt import VideosSearch
+from youtubesearchpython import VideosSearch
 from pyrogram.types import (
     InlineKeyboardButton,
     InlineKeyboardMarkup,
