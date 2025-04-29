@@ -50,14 +50,14 @@ EXTRA_PLUGINS = getenv(
 )
 
 
-MUST_JOIN = getenv("MUST_JOIN")
+
 
 # Fill True if you want to load extra plugins
 
 
 EXTRA_PLUGINS_REPO = getenv(
     "EXTRA_PLUGINS_REPO",
-    "https://github.com/AnonymousX888/ExtraPlugin",
+    "https://github.com/TheTeamVivek/Extra-Plugin",
 )
 # Fill here the external plugins repo where plugins that you want to load
 
