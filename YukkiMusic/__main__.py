@@ -13,7 +13,7 @@ from pyrogram import idle
 from pytgcalls.exceptions import NoActiveGroupCall
 
 import config
-from config import BANNED_USERS, EXTRA_PLUGINS, EXTRA_PLUGINS_REPO
+from config import BANNED_USERS
 from YukkiMusic import HELPABLE, LOGGER, app, userbot
 from YukkiMusic.core.call import Yukki
 from YukkiMusic.utils.database import get_banned_users, get_gbanned
@@ -47,7 +47,7 @@ async def init():
 
     if config.EXTRA_PLUGINS:
         if os.path.exists("xtraplugins"):
-            result = await app.run_shell_command(["git", "-C", "plugins", "pull"])
+            result = await app.run_shell_command(["git", "-C", "xtraplugins", "pull"])
             if result["returncode"] != 0:
                 logger.error(
                     f"Error pulling updates for extra plugins: {result['stderr']}"
@@ -55,13 +55,13 @@ async def init():
                 exit()
         else:
             result = await app.run_shell_command(
-                ["git", "clone", "https://github.com/jaadisini/Extra-Plugin", "plugins"]
+                ["git", "clone", config.EXTRA_PLUGINS_REPO, "xtraplugins"]
             )
             if result["returncode"] != 0:
                 logger.error(f"Error cloning extra plugins: {result['stderr']}")
                 exit()
 
-        req = os.path.join("plugins", "requirements.txt")
+        req = os.path.join("xtraplugins", "requirements.txt")
         if os.path.exists(req):
             result = await app.run_shell_command(["pip", "install", "-r", req])
             if result["returncode"] != 0:
