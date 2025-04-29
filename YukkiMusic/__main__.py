@@ -13,7 +13,7 @@ from pyrogram import idle
 from pytgcalls.exceptions import NoActiveGroupCall
 
 import config
-from config import BANNED_USERS
+from config import BANNED_USERS, EXTRA_PLUGINS, EXTRA_PLUGINS_REPO
 from YukkiMusic import HELPABLE, LOGGER, app, userbot
 from YukkiMusic.core.call import Yukki
 from YukkiMusic.utils.database import get_banned_users, get_gbanned
