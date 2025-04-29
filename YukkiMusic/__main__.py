@@ -47,7 +47,7 @@ async def init():
 
     if config.EXTRA_PLUGINS:
         if os.path.exists("xtraplugins"):
-            result = await app.run_shell_command(["git", "-C", "xtraplugins", "pull"])
+            result = await app.run_shell_command(["git", "-C", "plugins", "pull"])
             if result["returncode"] != 0:
                 logger.error(
                     f"Error pulling updates for extra plugins: {result['stderr']}"
@@ -55,13 +55,13 @@ async def init():
                 exit()
         else:
             result = await app.run_shell_command(
-                ["git", "clone", "https://github.com/jaadisini/Extra-Plugin", "xtraplugins"]
+                ["git", "clone", "https://github.com/jaadisini/Extra-Plugin", "plugins"]
             )
             if result["returncode"] != 0:
                 logger.error(f"Error cloning extra plugins: {result['stderr']}")
                 exit()
 
-        req = os.path.join("xtraplugins", "requirements.txt")
+        req = os.path.join("plugins", "requirements.txt")
         if os.path.exists(req):
             result = await app.run_shell_command(["pip", "install", "-r", req])
             if result["returncode"] != 0:
