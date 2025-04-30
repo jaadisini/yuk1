@@ -40,7 +40,7 @@ Checkout /markdownhelp to know more about formattings and other syntax.
 
 
 @app.on_message(filters.command("filter") & ~filters.private & ~BANNED_USERS)
-@utils.adminsOnly("can_change_info")
+@adminsOnly("can_change_info")
 async def save_filters(_, message):
     try:
         if len(message.command) < 2:
@@ -116,7 +116,6 @@ async def save_filters(_, message):
 
 
 @app.on_message(filters.command("filters") & ~filters.private & ~BANNED_USERS)
-@utils.capture_err
 async def get_filterss(_, message):
     _filters = await get_filters_names(message.chat.id)
     if not _filters:
@@ -137,7 +136,7 @@ async def get_filterss(_, message):
     & ~BANNED_USERS,
     group=1,
 )
-@utils.capture_err
+
 async def filters_re(_, message):
     from_user = message.from_user if message.from_user else message.sender_chat
     from_user.id
@@ -255,7 +254,7 @@ async def filters_re(_, message):
 
 
 @app.on_message(filters.command("stopall") & ~filters.private & ~BANNED_USERS)
-@utils.adminsOnly("can_change_info")
+@adminsOnly("can_change_info")
 async def stop_all(_, message):
     _filters = await get_filters_names(message.chat.id)
     if not _filters:
