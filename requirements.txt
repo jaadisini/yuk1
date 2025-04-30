@@ -28,3 +28,4 @@ gunicorn==23.0.0
 yt-dlp==2025.3.31
 youtube-search-python
 pyyaml==6.0.2
+filetype
