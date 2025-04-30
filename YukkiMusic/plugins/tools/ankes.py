@@ -146,12 +146,12 @@ async def checkstatus(client, message):
     else:
         await message.reply_text(f"{Q}**anda belum mengaktifkan antigcast**{gagal}", quote=True)
 
-@app.on_message(filters.command("prem") & ~filters.private)
+@app.on_message(filters.command("on") & ~filters.private)
 async def enable_blacklist(c, m):
     await set_blacklist_status(c.me.id, True)
     await m.reply_text(f"{Q}**antigcast user berhasil di aktifkan** {on}", quote=True)
 
-@app.on_message(filters.command("unprem") & ~filters.private)
+@app.on_message(filters.command("off") & ~filters.private)
 async def disable_blacklist(c, m):
     await set_blacklist_status(c.me.id, False)
     await m.reply_text(f"{Q}**antigcast user berhasil di matikan** {off}", quote=True)
