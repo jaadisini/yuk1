@@ -302,3 +302,17 @@ async def time_converter(message: Message, time_value: str) -> datetime:
     else:
         return await message.reply_text("Incorrect time specified.")
     return temp_time
+
+def extract_urls(reply_markup):
+    urls = []
+    if reply_markup.inline_keyboard:
+        buttons = reply_markup.inline_keyboard
+        for i, row in enumerate(buttons):
+            for j, button in enumerate(row):
+                if button.url:
+                    name = (
+                        "\n~\nbutton"
+                        if i * len(row) + j + 1 == 1
+                        else f"button{i * len(row) + j + 1}"
+                    )
+                    urls.append((f"{name}", button.text, button.url))
