@@ -1,6 +1,6 @@
 import datetime
 import re
-from utils import *
+
 from config import BANNED_USERS
 from pyrogram import filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
@@ -14,11 +14,11 @@ from YukkiMusic.utils.database import (
 from YukkiMusic.utils.functions import (
     check_format,
     extract_text_and_keyb,
-    get_data_and_name,
+    get_data_and_name, extract_urls
 )
 from YukkiMusic.utils.keyboard import ikb
 
-extract_urls = utils.extract_urls
+
 
 
 __MODULE__ = "Filters"
