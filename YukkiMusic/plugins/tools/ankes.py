@@ -247,7 +247,7 @@ async def add_pesan(c, m):
     if user_text not in msg_ids:
         msg_ids.append(user_text)
         await psnz.update_one({"_id": c.me.id}, {"$set": {"msg_text": msg_ids}}, upsert=True)
-        sukses = await m.reply_text(f"pesan {user_text} berhasil di tambahkan ke database{dn}", quote=True)
+        sukses = await m.reply_text("<blockquote><b>pesan {user_text} berhasil di tambahkan ke database{dn}</b></blockquote>", quote=True)
         await _rply.delete()
         await purge(m)
         await sukses.delete()
