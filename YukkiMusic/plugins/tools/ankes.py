@@ -139,7 +139,7 @@ async def add_user_to_blacklist(c, m):
         await m.reply_text(f"{Q}**user dengan id** `{user_id}` **telah ditambahkan ke daftar antigcast** {dn}", quote=True)
     else:
         await m.reply_text(f"{dn}**user tersebut sudah ada dalam daftar antigcast {Q}**", quote=True)
-
+    
 @app.on_message(filters.command("listduar") & ~filters.private)
 async def display_blacklist(client, message):
     user_ids = await get_user_ids(client.me.id)
@@ -178,13 +178,16 @@ async def checkstatus(client, message):
 @app.on_message(filters.command("on") & ~filters.private)
 async def enable_blacklist(c, m):
     await set_blacklist_status(c.me.id, True)
-    await m.reply_text(f"{Q}**antigcast user berhasil di aktifkan** {on}", quote=True)
+    x = await m.reply_text(f"{Q}**antigcast user berhasil di aktifkan** {on}", quote=True)
+    await asyncio.sleep(0.5)
+    await x.delete()
 
 @app.on_message(filters.command("off") & ~filters.private)
 async def disable_blacklist(c, m):
     await set_blacklist_status(c.me.id, False)
-    await m.reply_text(f"{Q}**antigcast user berhasil di matikan** {off}", quote=True)
-
+    x = await m.reply_text(f"{Q}**antigcast user berhasil di matikan** {off}", quote=True)
+    await asyncio.sleep(0.5)
+    await x.delete()
 @app.on_message(filters.command("addgc") & ~filters.private)
 async def add_group_to_antigcast(c, m):
     type = (ChatType.GROUP, ChatType.SUPERGROUP)
