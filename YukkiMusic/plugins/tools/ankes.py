@@ -2,9 +2,10 @@ from YukkiMusic import app
 import asyncio
 import os
 import re
-from pyrogram import *
+
 
 from pyrogram.enums import ChatMemberStatus
+from pyrogram.errors import FloodWait, MessageDeleteForbidden
 from pyrogram.types import ChatPermissions
 from pyrogram import filters, enums
 from pyrogram.enums import ChatType
