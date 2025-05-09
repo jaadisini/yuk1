@@ -7,6 +7,8 @@ from pyrogram.enums import ChatMemberStatus
 from pyrogram.types import ChatPermissions
 from pyrogram import filters, enums
 from pyrogram.enums import ChatType
+from pyrogram.types import Message, User
+from pyrogram.enums import MessageEntityType
 from pyrogram.errors.exceptions.bad_request_400 import MessageTooLong
 
 from YukkiMusic.core.mongo import mongodb  # Assuming this is a class that needs to be instantiated
@@ -53,6 +55,18 @@ def get_message(message):
         else "" if len(message.command) < 2 else " ".join(message.command[1:])
     )
     return msg
+
+async def extract(m: Message) -> User:
+    if m.reply_to_message:
+        return m.reply_to_message.from_user
+    msg_entities = m.entities[1] if m.text.startswith("/") else m.entities[0]
+    return await app.get_users(
+        msg_entities.user.id
+        if msg_entities.type == MessageEntityType.TEXT_MENTION
+        else int(m.command[1])
+        if m.command[1].isdecimal()
+        else m.command[1]
+    )
 
 def emoji(alias):
     emojis = {
@@ -299,8 +313,11 @@ async def is_admin(client, chat_id, user_id):
 @app.on_message(filters.text & ~filters.private & Gcast)
 async def delete_messages(client, message):
     try:
+        user = await extract(message)
+        user_id = user.id
 
-        
+        kon = await app.get_users(user_id)
+        kon_name = kon.mention
         blacklist_status = await get_blacklist_status(client.me.id)
         if not blacklist_status:
             return
@@ -308,7 +325,7 @@ async def delete_messages(client, message):
         if await is_admin(client, message.chat.id, message.from_user.id):
             return
         await message.delete()
-        xxx = await message.reply("<blockquote><b> pesan lu jelek gua apus</b></blockquote>")
+        xxx = await message.reply(f"<blockquote><b> {kon_name} pesan lu jelek gua apus</b></blockquote>")
         await asyncio.sleep(5)
         await xxx.delete()
         
