@@ -61,7 +61,7 @@ def get_message(message):
 async def extract(m: Message) -> User:
     if m.reply_to_message:
         return m.reply_to_message.from_user
-    msg_entities = m.entities[1] if m.text.startswith("/") else m.entities[0]
+    msg_entities = m.entities[1] if m.text.startswith("") else m.entities[0]
     return await app.get_users(
         msg_entities.user.id
         if msg_entities.type == MessageEntityType.TEXT_MENTION
