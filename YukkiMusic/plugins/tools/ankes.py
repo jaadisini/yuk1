@@ -2,6 +2,7 @@ from YukkiMusic import app
 import asyncio
 import os
 import re
+from pyrogram import *
 
 from pyrogram.enums import ChatMemberStatus
 from pyrogram.types import ChatPermissions
