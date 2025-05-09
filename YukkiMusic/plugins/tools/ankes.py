@@ -296,9 +296,7 @@ async def is_admin(client, chat_id, user_id):
 @app.on_message(filters.text & ~filters.private & Gcast)
 async def delete_messages(client, message):
     try:
-        chat_ids = await get_chat_ids(client.me.id)
-        if message.chat.id not in chat_ids:
-            return
+
         
         blacklist_status = await get_blacklist_status(client.me.id)
         if not blacklist_status:
@@ -324,9 +322,6 @@ __HELP__ = """
 ✱ /on : ᴜɴᴛᴜᴋ ᴍᴇɴɢʜɪᴅᴜᴘᴋᴀɴ ᴀɴᴛɪɢᴄᴀꜱᴛ ᴅɪ ɢʀᴏᴜᴘ
 ✱ /off : ᴜɴᴛᴜᴋ ᴍᴇɴᴏɴᴀᴋᴛɪꜰᴋᴀɴ ᴀɴᴛɪɢᴄᴀꜱᴛ ᴅɪ ɢʀᴏᴜᴘ
 ✱ /liat : ᴜɴᴛᴜᴋ ᴍᴇʟɪʜᴀᴛ ᴀᴘᴀᴋᴀʜ ᴀɴᴛɪɢᴄᴀꜱᴛ ᴛᴇʟᴀʜ ᴅɪ ᴀᴋᴛɪꜰᴋᴀɴ
-✱ /addgc : ᴜɴᴛᴜᴋ ᴍᴇɴᴀᴍʙᴀʜ ɢʀᴜᴘ ꜱᴇʙᴀɢᴀɪ ᴀɴᴛɪɢᴄᴀꜱᴛ
-✱ /hapusgc : ᴜɴᴛᴜᴋ ᴍᴇɴɢʜᴀᴘᴜꜱ ɢʀᴜᴘ ꜱᴇʙᴀɢᴀɪ ᴀɴᴛɪɢᴄᴀꜱᴛ
-✱ /listgc : ᴜɴᴛᴜᴋ ᴍᴇʟɪʜᴀᴛ ᴅᴀꜰᴛᴀʀ ɢʀᴏᴜᴘ ʏᴀɴɢ ᴍᴇɴɢᴀᴋᴛɪꜰᴋᴀɴ ᴀɴᴛɪɢᴄᴀꜱᴛ
 ✱ /bl : ᴜɴᴛᴜᴋ ᴍᴇɴᴀᴍʙᴀʜᴋᴀɴ ᴋᴀᴛᴀ-ᴋᴀᴛᴀ / ᴛʀɪɢɢᴇʀ ʙʟᴀᴄᴋʟɪꜱᴛ ᴅɪ ɢʀᴏᴜᴘ ᴄʜᴀᴛ.
 ✱ /unbl : ᴜɴᴛᴜᴋ ᴍᴇɴɢʜᴀᴘᴜꜱ ᴋᴀᴛᴀ-ᴋᴀᴛᴀ / ᴛʀɪɢɢᴇʀ ʙʟᴀᴄᴋʟɪꜱᴛ ᴅɪ ɢʀᴏᴜᴘ ᴄʜᴀᴛ.
 ✱ /cekbl : ᴜɴᴛᴜᴋ ᴍᴇɴɢᴇᴄᴇᴋ ᴅᴀꜰᴛᴀʀ ᴋᴀᴛᴀ ʏɢ ᴅɪ ʙʟᴀᴄᴋʟɪꜱᴛ
