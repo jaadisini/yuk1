@@ -20,13 +20,13 @@ def is_true(value: str) -> bool:
 
 # Get it from my.telegram.org
 
-API_ID = int(getenv("API_ID", "24773720"))
+API_ID = int(getenv("API_ID"))
 
-API_HASH = getenv("API_HASH", "b8158aa3d0e6deabfb14c92ccf95ff8d")
+API_HASH = getenv("API_HASH")
 
 
 ## Get it from @Botfather in Telegram.
-BOT_TOKEN = getenv("BOT_TOKEN", "7918013937:AAFKZItUUExUPJubRGcDLWgPgj0kdgb3ydI")
+BOT_TOKEN = getenv("BOT_TOKEN")
 
 
 # Database to save your chats and stats... Get MongoDB:-  https://telegra.ph/How-To-get-Mongodb-URI-04-06
