@@ -13,7 +13,7 @@ import random
 import re
 
 from async_lru import alru_cache
-from youtubesearchpython import VideosSearch
+from py_yt import VideosSearch
 from pyrogram.enums import MessageEntityType
 from pyrogram.types import Message
 from yt_dlp import YoutubeDL
