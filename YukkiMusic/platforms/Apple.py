@@ -12,7 +12,7 @@ import re
 
 import aiohttp
 from bs4 import BeautifulSoup
-from youtubesearchpython import VideosSearch
+from py_yt import VideosSearch
 
 
 class Apple:
