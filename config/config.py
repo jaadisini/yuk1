@@ -30,7 +30,7 @@ BOT_TOKEN = getenv("BOT_TOKEN", "7918013937:AAFKZItUUExUPJubRGcDLWgPgj0kdgb3ydI"
 
 
 # Database to save your chats and stats... Get MongoDB:-  https://telegra.ph/How-To-get-Mongodb-URI-04-06
-MONGO_DB_URI = getenv("MONGO_DB_URI", "mongodb+srv://erkbwrs084:909090@cluster0.qdrfgmb.mongodb.net/?retryWrites=true&w=majority")
+MONGO_DB_URI = getenv("MONGO_DB_URI")
 
 CLEANMODE_DELETE_MINS = int(
     getenv("CLEANMODE_MINS", "5")
@@ -162,7 +162,7 @@ SET_CMDS = is_true(getenv("SET_CMDS", "False"))
 
 # You'll need a Pyrogram String Session for these vars. Generate String from our session generator bot @YukkiStringBot
 # Get the environment variable with a default value of an empty string
-raw_sessions = getenv("STRING_SESSIONS", "BQGRQ2oACm-TKikF-lU1LRq4MXyGcoIabiULgqwSgUVn7U6fqW-DV9QkBXxkfx0XsM8nwTyAY1SUqi1B70kfCF5pvtO6H3UygA8Cx6xTgTybQB2q_UbcSXmKEgDRr_FqIK4lMY5RRZTU8akTydTwrWJeCBbr46MCrqQduPP7Wt6PKhFvP7mJHxhVRuj5AIpwIcCLqvtmJIMF4rKwKGRGnjaZ7nyMlscwltBBvnOQNB6wZvpQ8h_HDYplDlZNlj7wYckiPvJTbF4o3rkjzVW8cCWAEdCI7pHKXFgDrL2ajL29bI5eVpGm65cGzB2m-_x-mNjrXlACKnVqiVGL6tmlpX35imrrygAAAABWOQ-EAA")
+raw_sessions = getenv("STRING_SESSIONS")
 
 # Split the sessions only if raw_sessions is not empty
 STRING_SESSIONS = list(map(str.strip, raw_sessions.split(","))) if raw_sessions else []
