@@ -77,7 +77,7 @@ async def mentionall(client, message: Message):
                 if usrnum == 8:
                     try:
                         if mode == "text_on_cmd":
-                            txt = f"<blockquote>{msg}</blockquote>\n\n<blockquote>{usrtxt}</blockquote>\n@Ritolog"
+                            txt = f"<blockquote>{msg}</blockquote>\n\n<blockquote>{usrtxt}</blockquote>\n@ResahBerkata"
                             await client.send_message(chat_id, txt)
                         elif mode == "text_on_reply":
                             await msg.reply(usrtxt)
