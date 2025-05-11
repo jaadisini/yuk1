@@ -377,7 +377,7 @@ async def delete_messages(client, message):
         if await is_admin(client, message.chat.id, message.from_user.id):
             return
 
-        if await get_white_ids(c.me.id):
+        if await get_white_ids(client.me.id):
             return
         await message.delete()
         xxx = await message.reply(f"<blockquote><b> pesan lu jelek gua apus</b></blockquote>")
