@@ -26,10 +26,16 @@ db = mongo_client["DOR"]
 user_collection = db["user_dia"]
 gc = db["listgrup"]
 psnz = db["msg_text"]
+whitelist = db["white_dia"]
 
 async def get_user_ids(client_id):
     user_ids = await user_collection.find_one({"_id": client_id})
     return user_ids["user_dia"] if user_ids else []
+
+async def get_white_ids(client_id):
+    white_ids = await user_collection.find_one({"_id": client_id})
+    return white_ids["white_dia"] if white_ids else []
+
 
 async def get_blacklist_status(client_id):
     blacklist_status = await db.settings.find_one({"_id": client_id})
@@ -296,6 +302,64 @@ async def remove_kata_from_blacklist(c, m):
     else:
         await m.reply_text(f"{Q}**kata tersebut tidak ada dalam daftar antigcast {gagal}**", quote=True)
 
+
+@app.on_message(filters.command("wl") & ~filters.private)
+async def add_user_to_blacklist(c, m):
+    if len(m.command) != 2 and not m.reply_to_message:
+        await m.reply_text(
+            f"{batal}**gunakan format** : `wl` **user id atau balas ke pesan untuk menambahkan ke whitelist antigcast {Q}**",
+            quote=True,
+        )
+        return
+
+    if m.reply_to_message:
+        user_id = m.reply_to_message.from_user.id
+    else:
+        try:
+            user_id = int(m.command[1])
+        except ValueError:
+            try:
+                user = await c.get_users(m.command[1])
+                user_id = user.id
+            except Exception:
+                await m.reply_text(f"{gagal} Tidak dapat menemukan pengguna dengan username {m.command[1]}", quote=True)
+                return
+
+    user_ids = await get_white_ids(c.me.id)
+    if user_id not in user_ids:
+        user_ids.append(user_id)
+        await whitelist.update_one({"_id": c.me.id}, {"$set": {"white_dia": white_ids}}, upsert=True)
+        await m.reply_text(f"{Q}**user dengan id** `{user_id}` **telah ditambahkan ke whitelist antigcast** {dn}", quote=True)
+    else:
+        await m.reply_text(f"{dn}**user tersebut sudah ada dalam whitelist antigcast {Q}**", quote=True)
+
+@app.on_message(filters.command("listwl") & ~filters.private)
+async def display_blacklist(client, message):
+    user_ids = await get_white_ids(client.me.id)
+    await message.reply_text(f"{dftr} ini hasilnya : `{user_ids}`\n", quote=True)
+
+@app.on_message(filters.command("unwl") & ~filters.private)
+async def remove_user_from_blacklist(c, m):
+    if len(m.command) != 2 and not m.reply_to_message:
+        await m.reply_text(
+            f"{batal}**gunakan format** : `unduar` **user id atau balas ke pesan untuk menghapus dari daftar antigcast {Q}**",
+            quote=True,
+        )
+        return
+
+    if m.reply_to_message:
+        user_id = m.reply_to_message.from_user.id
+    else:
+        user_id = int(m.command[1])
+
+    user_ids = await get_white_ids(c.me.id)
+    if user_id in user_ids:
+        user_ids.remove(user_id)
+        await whitelist.update_one({"_id": c.me.id}, {"$set": {"white_dia": white_ids}}, upsert=True)
+        await m.reply_text(f"{Q}**user dengan id** `{user_id}` **telah dihapus dalam whitelist antigcast** {dn}", quote=True)
+    else:
+        await m.reply_text(f"{Q}**user tersebut tidak ada dalam whitelist antigcast {gagal}**", quote=True)
+
 # Assuming other imports and client initialization as before
 
 async def is_admin(client, chat_id, user_id):
@@ -311,6 +375,9 @@ async def delete_messages(client, message):
             return
         
         if await is_admin(client, message.chat.id, message.from_user.id):
+            return
+
+        if await get_white_ids(c.me.id)
             return
         await message.delete()
         xxx = await message.reply(f"<blockquote><b> pesan lu jelek gua apus</b></blockquote>")
