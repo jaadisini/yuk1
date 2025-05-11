@@ -357,7 +357,7 @@ async def remove_user_from_whitelist(c, m):
         user_id = int(m.command[1])
 
     white_ids = await get_white_ids(c.me.id)
-    if user_id in user_ids:
+    if user_id in white_ids:
         white_ids.remove(user_id)
         await whitelist.update_one({"_id": c.me.id}, {"$set": {"white_dia": white_ids}}, upsert=True)
         await m.reply_text(f"{Q}**user dengan id** `{user_id}` **telah dihapus dalam whitelist antigcast** {dn}", quote=True)
