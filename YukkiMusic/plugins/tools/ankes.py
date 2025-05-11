@@ -33,7 +33,7 @@ async def get_user_ids(client_id):
     return user_ids["user_dia"] if user_ids else []
 
 async def get_white_ids(client_id):
-    white_ids = await user_collection.find_one({"_id": client_id})
+    white_ids = await whitelist.find_one({"_id": client_id})
     return white_ids["white_dia"] if white_ids else []
 
 
