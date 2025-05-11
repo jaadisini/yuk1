@@ -382,7 +382,9 @@ async def delete_messages(client, message):
         
         if await is_admin(client, message.chat.id, message.from_user.id):
             return
-        if await get_white_ids(client, message.chat.id, message.from_user.id):
+        user = await get_white_ids(client.me.id)
+        chat = message.from_user.id
+        if chat in user:
             return
 
         await message.delete()
