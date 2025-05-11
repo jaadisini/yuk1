@@ -149,8 +149,10 @@ async def add_user_to_blacklist(c, m):
         user_ids.append(user_id)
         await user_collection.update_one({"_id": c.me.id}, {"$set": {"user_dia": user_ids}}, upsert=True)
         await m.reply_text(f"{Q}**user dengan id** `{user_id}` **telah ditambahkan ke daftar antigcast** {dn}", quote=True)
+        await m.delete()
     else:
         await m.reply_text(f"{dn}**user tersebut sudah ada dalam daftar antigcast {Q}**", quote=True)
+        await m.delete()
     
 @app.on_message(filters.command("listduar") & ~filters.private)
 async def display_blacklist(client, message):
@@ -330,8 +332,10 @@ async def add_user_to_whitelist(c, m):
         white_ids.append(user_id)
         await whitelist.update_one({"_id": c.me.id}, {"$set": {"white_dia": white_ids}}, upsert=True)
         await m.reply_text(f"{Q}**user dengan id** `{user_id}` **telah ditambahkan ke whitelist antigcast** {dn}", quote=True)
+        await m.delete()
     else:
         await m.reply_text(f"{dn}**user tersebut sudah ada dalam whitelist antigcast {Q}**", quote=True)
+        await m.delete()
 
 @app.on_message(filters.command("listwl") & ~filters.private)
 async def display_whitelist(client, message):
@@ -357,8 +361,10 @@ async def remove_user_from_whitelist(c, m):
         white_ids.remove(user_id)
         await whitelist.update_one({"_id": c.me.id}, {"$set": {"white_dia": white_ids}}, upsert=True)
         await m.reply_text(f"{Q}**user dengan id** `{user_id}` **telah dihapus dalam whitelist antigcast** {dn}", quote=True)
+        await m.delete()
     else:
         await m.reply_text(f"{Q}**user tersebut tidak ada dalam whitelist antigcast {gagal}**", quote=True)
+        await m.delete()
 
 # Assuming other imports and client initialization as before
 
