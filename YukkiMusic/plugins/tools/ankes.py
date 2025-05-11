@@ -328,7 +328,7 @@ async def add_user_to_blacklist(c, m):
     user_ids = await get_white_ids(c.me.id)
     if user_id not in user_ids:
         user_ids.append(user_id)
-        await whitelist.update_one({"_id": c.me.id}, {"$set": {"white_dia": white_ids}}, upsert=True)
+        await whitelist.update_one({"_id": c.me.id}, {"$set": {"white_dia": whitelist}}, upsert=True)
         await m.reply_text(f"{Q}**user dengan id** `{user_id}` **telah ditambahkan ke whitelist antigcast** {dn}", quote=True)
     else:
         await m.reply_text(f"{dn}**user tersebut sudah ada dalam whitelist antigcast {Q}**", quote=True)
@@ -355,7 +355,7 @@ async def remove_user_from_blacklist(c, m):
     user_ids = await get_white_ids(c.me.id)
     if user_id in user_ids:
         user_ids.remove(user_id)
-        await whitelist.update_one({"_id": c.me.id}, {"$set": {"white_dia": white_ids}}, upsert=True)
+        await whitelist.update_one({"_id": c.me.id}, {"$set": {"white_dia": whitelist}}, upsert=True)
         await m.reply_text(f"{Q}**user dengan id** `{user_id}` **telah dihapus dalam whitelist antigcast** {dn}", quote=True)
     else:
         await m.reply_text(f"{Q}**user tersebut tidak ada dalam whitelist antigcast {gagal}**", quote=True)
