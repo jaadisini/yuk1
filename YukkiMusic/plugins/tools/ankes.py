@@ -388,7 +388,7 @@ async def delete_messages(client, message):
             return
 
         await message.delete()
-        xxx = await message.reply(f"<blockquote><b>[{m.user.first_name}](tg://user?id={m.user.id}) pesan lu jelek gua apus</b></blockquote>")
+        xxx = await message.reply(f"<blockquote><b>[{message.user.first_name}](tg://user?id={message.user.id}) pesan lu jelek gua apus</b></blockquote>")
         await asyncio.sleep(5)
         await xxx.delete()
         
@@ -404,9 +404,9 @@ __HELP__ = """
 
 ✱ /on : ᴜɴᴛᴜᴋ ᴍᴇɴɢʜɪᴅᴜᴘᴋᴀɴ ᴀɴᴛɪɢᴄᴀꜱᴛ ᴅɪ ɢʀᴏᴜᴘ
 ✱ /off : ᴜɴᴛᴜᴋ ᴍᴇɴᴏɴᴀᴋᴛɪꜰᴋᴀɴ ᴀɴᴛɪɢᴄᴀꜱᴛ ᴅɪ ɢʀᴏᴜᴘ
-✱ /ᴡʟ : ᴜɴᴛᴜᴋ ᴍᴇɴᴀᴍʙᴀʜᴋᴀɴ ᴜsᴇʀ ᴋᴇ ᴡʜɪᴛᴇʟɪsᴛ 
-✱ /ᴜɴᴡʟ : ᴜɴᴛᴜᴋ ᴍᴇɴɢʜᴀᴘᴜs ᴜsᴇʀ ᴅᴀʀɪ ᴅᴀғᴛᴀʀ ᴡʜɪᴛᴇʟɪsᴛ
-✱ /liat : ᴜɴᴛᴜᴋ ᴍᴇʟɪʜᴀᴛ ᴀᴘᴀᴋᴀʜ ᴀɴᴛɪɢᴄᴀꜱᴛ ᴛᴇʟᴀʜ ᴅɪ ᴀᴋᴛɪꜰᴋᴀɴ
+✱ /wl : ᴜɴᴛᴜᴋ ᴍᴇɴᴀᴍʙᴀʜᴋᴀɴ ᴜsᴇʀ ᴋᴇ ᴡʜɪᴛᴇʟɪsᴛ 
+✱ /unwl : ᴜɴᴛᴜᴋ ᴍᴇɴɢʜᴀᴘᴜs ᴜsᴇʀ ᴅᴀʀɪ ᴅᴀғᴛᴀʀ ᴡʜɪᴛᴇʟɪsᴛ
+✱ /listwl : ᴜɴᴛᴜᴋ ᴍᴇʟɪʜᴀᴛ ᴀᴘᴀᴋᴀʜ ᴀɴᴛɪɢᴄᴀꜱᴛ ᴛᴇʟᴀʜ ᴅɪ ᴀᴋᴛɪꜰᴋᴀɴ
 ✱ /bl : ᴜɴᴛᴜᴋ ᴍᴇɴᴀᴍʙᴀʜᴋᴀɴ ᴋᴀᴛᴀ-ᴋᴀᴛᴀ / ᴛʀɪɢɢᴇʀ ʙʟᴀᴄᴋʟɪꜱᴛ ᴅɪ ɢʀᴏᴜᴘ ᴄʜᴀᴛ.
 ✱ /unbl : ᴜɴᴛᴜᴋ ᴍᴇɴɢʜᴀᴘᴜꜱ ᴋᴀᴛᴀ-ᴋᴀᴛᴀ / ᴛʀɪɢɢᴇʀ ʙʟᴀᴄᴋʟɪꜱᴛ ᴅɪ ɢʀᴏᴜᴘ ᴄʜᴀᴛ.
 ✱ /cekbl : ᴜɴᴛᴜᴋ ᴍᴇɴɢᴇᴄᴇᴋ ᴅᴀꜰᴛᴀʀ ᴋᴀᴛᴀ ʏɢ ᴅɪ ʙʟᴀᴄᴋʟɪꜱᴛ
