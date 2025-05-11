@@ -382,13 +382,13 @@ async def delete_messages(client, message):
         
         if await is_admin(client, message.chat.id, message.from_user.id):
             return
-        user = await get_white_ids(client.me.id)
+        users = await get_white_ids(client.me.id)
         chat = message.from_user.id
-        if chat in user:
+        if chat in users:
             return
 
         await message.delete()
-        xxx = await message.reply(f"<blockquote><b>[{_user.first_name}](tg://user?id={_user.id}) pesan lu jelek gua apus</b></blockquote>")
+        xxx = await message.reply(f"<blockquote><b>[{user.first_name}](tg://user?id={user.id}) pesan lu jelek gua apus</b></blockquote>")
         await asyncio.sleep(5)
         await xxx.delete()
         
