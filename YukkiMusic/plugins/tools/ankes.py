@@ -388,7 +388,7 @@ async def delete_messages(client, message):
             return
 
         await message.delete()
-        xxx = await message.reply(f"<blockquote><b>[{user.first_name}](tg://user?id={user.id}) pesan lu jelek gua apus</b></blockquote>")
+        xxx = await message.reply(f"<blockquote><b>pesan lu jelek gua apus</b></blockquote>")
         await asyncio.sleep(5)
         await xxx.delete()
         
