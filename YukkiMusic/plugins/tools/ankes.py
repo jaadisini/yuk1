@@ -304,7 +304,7 @@ async def remove_kata_from_blacklist(c, m):
 
 
 @app.on_message(filters.command("wl") & ~filters.private)
-async def add_user_to_blacklist(c, m):
+async def add_user_to_whitelist(c, m):
     if len(m.command) != 2 and not m.reply_to_message:
         await m.reply_text(
             f"{batal}**gunakan format** : `wl` **user id atau balas ke pesan untuk menambahkan ke whitelist antigcast {Q}**",
@@ -328,21 +328,21 @@ async def add_user_to_blacklist(c, m):
     user_ids = await get_white_ids(c.me.id)
     if user_id not in user_ids:
         user_ids.append(user_id)
-        await whitelist.update_one({"_id": c.me.id}, {"$set": {"white_dia": whitelist}}, upsert=True)
+        await whitelist.update_one({"_id": c.me.id}, {"$set": {"white_dia": white_dia}}, upsert=True)
         await m.reply_text(f"{Q}**user dengan id** `{user_id}` **telah ditambahkan ke whitelist antigcast** {dn}", quote=True)
     else:
         await m.reply_text(f"{dn}**user tersebut sudah ada dalam whitelist antigcast {Q}**", quote=True)
 
 @app.on_message(filters.command("listwl") & ~filters.private)
-async def display_blacklist(client, message):
+async def display_whitelist(client, message):
     user_ids = await get_white_ids(client.me.id)
     await message.reply_text(f"{dftr} ini hasilnya : `{user_ids}`\n", quote=True)
 
 @app.on_message(filters.command("unwl") & ~filters.private)
-async def remove_user_from_blacklist(c, m):
+async def remove_user_from_whitelist(c, m):
     if len(m.command) != 2 and not m.reply_to_message:
         await m.reply_text(
-            f"{batal}**gunakan format** : `unduar` **user id atau balas ke pesan untuk menghapus dari daftar antigcast {Q}**",
+            f"{batal}**gunakan format** : `unwl` **user id atau balas ke pesan untuk menghapus dari daftar antigcast {Q}**",
             quote=True,
         )
         return
@@ -355,7 +355,7 @@ async def remove_user_from_blacklist(c, m):
     user_ids = await get_white_ids(c.me.id)
     if user_id in user_ids:
         user_ids.remove(user_id)
-        await whitelist.update_one({"_id": c.me.id}, {"$set": {"white_dia": whitelist}}, upsert=True)
+        await whitelist.update_one({"_id": c.me.id}, {"$set": {"white_dia": white_dia}}, upsert=True)
         await m.reply_text(f"{Q}**user dengan id** `{user_id}` **telah dihapus dalam whitelist antigcast** {dn}", quote=True)
     else:
         await m.reply_text(f"{Q}**user tersebut tidak ada dalam whitelist antigcast {gagal}**", quote=True)
