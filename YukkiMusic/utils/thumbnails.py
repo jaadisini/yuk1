@@ -8,7 +8,7 @@
 # All rights reserved.
 #
 
-from py_yt import VideosSearch
+from py-yt-search import VideosSearch
 
 
 async def gen_thumb(videoid, thumb=None):
