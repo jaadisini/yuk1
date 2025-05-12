@@ -12,7 +12,7 @@ import re
 
 import aiohttp
 from bs4 import BeautifulSoup
-from py_yt import VideosSearch
+from py-yt-search import VideosSearch
 
 
 class Resso:
