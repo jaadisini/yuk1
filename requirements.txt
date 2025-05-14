@@ -19,7 +19,7 @@ spotipy==2.25.1
 TgCrypto==1.2.5
 urllib3==2.4.0
 uvloop==0.21.0
-Flask==3.1.0
+Flask==3.1.1
 gunicorn==23.0.0
 yt-dlp==2025.4.30
 https://github.com/KSKOP69/youtube-search-python/archive/ksk.zip
